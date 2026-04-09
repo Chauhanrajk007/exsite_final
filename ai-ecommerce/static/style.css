@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0a0a0f;
+    color: #e2e2e8;
+    min-height: 100vh;
+}
+
+.app {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+/* ---- Header ---- */
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00d4ff, #0099ff, #00d4ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    to { background-position: 200% center; }
+}
+
+.subtitle {
+    color: #6b6b80;
+    margin-top: 8px;
+    font-size: 0.95rem;
+}
+
+/* ---- Search ---- */
+
+.search-container {
+    margin-bottom: 32px;
+}
+
+.search-box {
+    display: flex;
+    background: #14141f;
+    border: 1px solid #1e1e30;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: #0099ff;
+    box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.15);
+}
+
+.search-box input {
+    flex: 1;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: #e2e2e8;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: #4a4a60;
+}
+
+.search-box button {
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: #0099ff;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.search-box button:hover {
+    background: rgba(0, 153, 255, 0.1);
+    color: #00bbff;
+}
+
+/* ---- Categories ---- */
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.cat-chip {
+    padding: 6px 14px;
+    background: #14141f;
+    border: 1px solid #1e1e30;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #8888a0;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cat-chip:hover {
+    border-color: #0099ff;
+    color: #00bbff;
+    background: rgba(0, 153, 255, 0.08);
+}
+
+/* ---- Loading ---- */
+
+.loading {
+    text-align: center;
+    padding: 48px;
+}
+
+.loading p {
+    color: #6b6b80;
+    margin-top: 16px;
+    font-size: 0.9rem;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #1e1e30;
+    border-top-color: #0099ff;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---- Intent Badge ---- */
+
+.intent-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 153, 255, 0.1);
+    border: 1px solid rgba(0, 153, 255, 0.25);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: #66ccff;
+    margin-bottom: 24px;
+}
+
+/* ---- Results ---- */
+
+.results {
+    display: grid;
+    gap: 16px;
+}
+
+/* -- Product Card -- */
+
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: #14141f;
+    border: 1px solid #1e1e30;
+    border-radius: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.product-card:hover {
+    border-color: #2a2a40;
+    transform: translateY(-2px);
+}
+
+.product-info h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e2e8;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.product-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: #6b6b80;
+}
+
+.product-meta .marketplace {
+    text-transform: capitalize;
+}
+
+.product-price {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.product-price .price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #00dd88;
+}
+
+.product-price .rating {
+    font-size: 0.8rem;
+    color: #e8a800;
+    margin-top: 4px;
+}
+
+/* -- Best Tag -- */
+
+.best-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(0, 221, 136, 0.12);
+    color: #00dd88;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+/* ---- Goal Bundle ---- */
+
+.bundle-section {
+    margin-bottom: 24px;
+}
+
+.bundle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(0, 153, 255, 0.08), rgba(0, 221, 136, 0.08));
+    border: 1px solid #1e1e30;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.bundle-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.bundle-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #00dd88;
+}
+
+.component-group {
+    margin-bottom: 20px;
+}
+
+.component-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0099ff;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+.component-budget {
+    color: #6b6b80;
+    font-weight: 400;
+}
+
+/* ---- No Results ---- */
+
+.no-results {
+    text-align: center;
+    padding: 48px;
+    color: #6b6b80;
+}
+
+.no-results .icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+/* ---- Error ---- */
+
+.error-msg {
+    text-align: center;
+    padding: 24px;
+    background: rgba(255, 60, 60, 0.08);
+    border: 1px solid rgba(255, 60, 60, 0.2);
+    border-radius: 12px;
+    color: #ff6666;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 600px) {
+    .app { padding: 24px 16px; }
+    header h1 { font-size: 1.5rem; }
+    .product-card { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .product-price { text-align: left; }
+}
