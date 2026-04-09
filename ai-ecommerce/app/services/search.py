@@ -8,7 +8,10 @@ def search_products(
     max_price: float | None = None,
     limit: int = 20
 ) -> list:
-    query_vector = embedding_model.encode(query).tolist()
+    query_vector = embedding_model.encode(query)
+    # Gemini returns a plain list; SentenceTransformer returned numpy
+    if hasattr(query_vector, 'tolist'):
+        query_vector = query_vector.tolist()
 
     response = supabase.rpc(
         "match_products",

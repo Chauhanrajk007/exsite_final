@@ -94,7 +94,9 @@ async def compare_prices(req: CompareRequest):
     """
     try:
         # Use vector search to find similar products
-        query_vector = embedding_model.encode(req.product_name).tolist()
+        query_vector = embedding_model.encode(req.product_name)
+        if hasattr(query_vector, 'tolist'):
+            query_vector = query_vector.tolist()
 
         response = supabase.rpc(
             "match_products",
