@@ -1,12 +1,14 @@
 import os
 from dotenv import load_dotenv
 
-# Load .env file for local dev (on Render env vars are injected directly)
+# Load .env file for local dev (on Railway env vars are injected directly)
 load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL", "")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+PORT = int(os.getenv("PORT", "8000"))
 
 # Validate critical env vars at startup — print warnings instead of crashing
 if not SUPABASE_URL:

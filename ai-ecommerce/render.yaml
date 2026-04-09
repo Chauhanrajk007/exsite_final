@@ -1,16 +1,2 @@
-services:
-  - type: web
-    name: ai-ecommerce-backend
-    runtime: python
-    rootDir: ai-ecommerce
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: SUPABASE_URL
-        sync: false
-      - key: SUPABASE_KEY
-        sync: false
-      - key: GEMINI_API_KEY
-        sync: false
-      - key: PYTHONUNBUFFERED
-        value: "1"
+# This file is no longer used.
+# Backend is deployed to Railway — see railway.json.

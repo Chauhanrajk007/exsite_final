@@ -1,4 +1,4 @@
-# Environment variables (SECRETS)
+# Environment variables (SECRETS - never commit)
 .env
 .env.local
 .env.production
@@ -34,3 +34,6 @@ Thumbs.db
 # Agent config (local only)
 .agent/
 .claude/
+
+# Node modules (if any leaked)
+node_modules/

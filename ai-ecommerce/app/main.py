@@ -1,4 +1,5 @@
 import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -6,22 +7,53 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import Optional
 
-from app.core.config import AVAILABLE_CATEGORIES
+from app.core.config import AVAILABLE_CATEGORIES, FRONTEND_URL
 from app.core.database import supabase, embedding_model
 from app.services.intent_parser import parse_intent
 from app.services.search import search_products, search_for_goal
 
-app = FastAPI(title="AI E-Commerce API", version="1.0.0")
+
+# ── Startup / Shutdown lifecycle ────────────────────────────────
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("[eXsite] ✅ Backend is starting up...", flush=True)
+    print(f"[eXsite] FRONTEND_URL = {FRONTEND_URL or '(not set — CORS open)'}", flush=True)
+    yield
+    print("[eXsite] 🔴 Backend shutting down...", flush=True)
+
+
+app = FastAPI(
+    title="AI E-Commerce API",
+    version="1.0.0",
+    lifespan=lifespan,
+)
+
+# ── CORS — allow frontend origin ────────────────────────────────
+# In production, FRONTEND_URL should be your Vercel domain.
+# Locally, we also allow localhost origins.
+allowed_origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+if FRONTEND_URL:
+    # Support comma-separated URLs (e.g. "https://exsite.vercel.app,https://exsite-git-main.vercel.app")
+    for url in FRONTEND_URL.split(","):
+        url = url.strip()
+        if url:
+            allowed_origins.append(url)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Only mount static files if the directory exists (won't exist on Render)
+# Only mount static files if the directory exists (won't exist on Railway)
 if os.path.isdir("static"):
     app.mount("/static", StaticFiles(directory="static"), name="static")
 
