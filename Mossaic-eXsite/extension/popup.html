@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header>
+      <div class="logo">e<span class="highlight">X</span>site</div>
+      <div class="tagline">AI SHOPPING ASSISTANT</div>
+    </header>
+
+    <main id="app-content">
+      <!-- Default State -->
+      <div id="default-state" class="state">
+        <div class="hero-text">Start Shopping</div>
+        <p class="description">Browse Amazon or Flipkart product pages to see AI-powered price comparisons instantly.</p>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading-state" class="state" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Finding best prices...</div>
+      </div>
+
+      <!-- Retailer State (Product detected) -->
+      <div id="retailer-state" class="state" style="display: none;">
+        <!-- Current product card -->
+        <div class="product-mini-card">
+          <img id="product-image" src="" alt="Product">
+          <div class="product-info">
+            <div id="product-title" class="title">Product Name</div>
+            <div class="price-row">
+              <span id="product-price" class="price">₹0</span>
+              <span id="product-marketplace" class="marketplace-badge">Amazon</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Best Deal Card -->
+        <div id="best-deal-card" class="comparison-card" style="display: none;">
+          <div class="comp-label">🏆 BEST PRICE FOUND</div>
+          <div class="comp-details">
+            <div class="comp-left">
+              <span id="best-retailer" class="comp-retailer">Flipkart</span>
+              <span id="best-product-name" class="comp-product-name"></span>
+            </div>
+            <span id="best-price" class="comp-price">₹0</span>
+          </div>
+          <div id="savings-row" class="savings-row" style="display: none;">
+            <span class="savings-label">You save</span>
+            <span id="savings-amount" class="savings-amount">₹0</span>
+          </div>
+          <a id="best-deal-link" href="#" target="_blank" class="visit-btn">Visit Deal →</a>
+        </div>
+
+        <!-- Other competitors -->
+        <div id="competitors-section" style="display: none;">
+          <div class="section-label">OTHER MARKETPLACES</div>
+          <div id="competitors-list" class="competitors-list"></div>
+        </div>
+
+        <!-- No competitors found -->
+        <div id="no-competitors" class="no-competitors" style="display: none;">
+          <div class="no-data-icon">🔍</div>
+          <div class="no-data-text">No cross-marketplace matches found yet</div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <button id="ai-search-btn" class="btn-primary">AI Search ⚡</button>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
