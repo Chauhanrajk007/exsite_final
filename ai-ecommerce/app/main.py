@@ -32,6 +32,7 @@ app = FastAPI(
 # In production, FRONTEND_URL should be your Vercel domain.
 # Locally, we also allow localhost origins.
 allowed_origins = [
+    "http://https://exsite-final.vercel.app"
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
